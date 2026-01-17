@@ -12,10 +12,17 @@ const PORT = process.env.PORT || 3000;
 
 const callserver = async () => {
 
-    await connectDB();
-    app.listen(PORT, () => {
-        console.log(`Example app listening on port ${PORT}`)
-    })
+    try {
+        await connectDB();
+        app.listen(PORT, () => {
+            console.log(`Example app listening on port ${PORT}`)
+        })
+    }
+    catch (error) {
+        console.error("Server failed to start", error);
+        process.exit(1);
+    }
 }
+
 
 callserver();
